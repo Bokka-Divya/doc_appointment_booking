@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Use your own background image with no filters -->
+<style>
+    body {
+        background-image: url("{% static 'images/admin-bg.jpg' %}"); /* Your image */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+    }
+</style>
+
+<!-- Content container -->
+<div class="container text-center d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
+    <h2 class="mb-3">Welcome, Admin!</h2>
+    <p class="lead mb-4">Manage doctors, appointments, and users from the menu above.</p>
+    <img src="{% static 'images/admin_dashboard.png' %}" alt="Admin Image"
+         class="img-fluid rounded shadow" style="max-width: 250px;">
+</div>
+
+{% endblock %}

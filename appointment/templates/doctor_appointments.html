@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Doctor's Appointments</h2>
+
+  <h4>Approved Appointments</h4>
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>S.No</th>
+        <th>Patient Name</th>
+        <th>Email</th>
+        <th>Date</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for appointment in approved_appointments %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ appointment.patient.user }}</td>
+        <td>{{ appointment.patient.user.email }}</td>
+        <td>{{ appointment.appointment_date }}</td>
+        <td>{{ appointment.appointment_time }}</td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="5" class="text-center">No approved appointments found.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h4>Unapproved Appointments</h4>
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>S.No</th>
+        <th>Patient Name</th>
+        <th>Email</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for appointment in unapproved_appointments %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ appointment.patient.user }}</td>
+        <td>{{ appointment.patient.user.email }}</td>
+        <td>{{ appointment.appointment_date }}</td>
+        <td>{{ appointment.appointment_time }}</td>
+        <td>
+          <a href="{% url 'approve-appointment' appointment.id %}" class="btn btn-success btn-sm">Approve</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="6" class="text-center">No pending appointments found.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+

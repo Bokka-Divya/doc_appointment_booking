@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div style="position: relative; text-align: center;">
+  <img src="{% static 'images/home.jpg' %}" alt="Doctor Background" style="width: 100%; height: auto;">
+  <div style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);">
+    <a href="{% url 'my-appointments' %}" class="btn btn-primary btn-lg me-3">View Appointments</a>
+  </div>
+</div>
+{% endblock %}

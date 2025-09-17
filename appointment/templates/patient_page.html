@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div style="position: relative; text-align: center;">
+  <img src="{% static 'images/home.jpg' %}" alt="Patient Background" style="width: 100%; height: auto;">
+  <div style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);">
+    <form method="post" action="{% url 'book-appointment' %}" style="margin-bottom: 20px;">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-success btn-lg me-3">Book appointment</button>
+    </form>
+    <a href="{% url 'my-appointments' %}" class="btn btn-info btn-lg">My appointments</a>
+  </div>
+</div>
+{% endblock %}
+

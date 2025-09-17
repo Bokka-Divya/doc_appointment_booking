@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Pending Doctors for Approval</h2>
+
+    {% if doctors %}
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Username</th>
+                    <th>Speciality</th>
+                    <th>Email</th>
+                    <th>Approve</th>
+                    <th>Reject</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for doctor in doctors %}
+                <tr>
+                    <td>{{ doctor.user.username }}</td>
+                    <td>{{doctor.speciality}}
+                    <td>{{ doctor.user.email }}</td>
+                    <td>
+                        <form method="post" action="{% url 'approve-doctor' doctor.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="{% url 'reject-doctor' doctor.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No pending doctor registrations.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

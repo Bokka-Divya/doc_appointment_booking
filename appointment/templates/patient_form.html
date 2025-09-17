@@ -1,0 +1,6 @@
+<h2>Complete Patient Profile</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save and Go to Login</button>
+</form>
